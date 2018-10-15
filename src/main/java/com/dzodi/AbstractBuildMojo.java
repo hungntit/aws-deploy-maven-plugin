@@ -1,4 +1,4 @@
-package com.estatedy;
+package com.dzodi;
 
 import org.apache.maven.plugins.annotations.Parameter;
 

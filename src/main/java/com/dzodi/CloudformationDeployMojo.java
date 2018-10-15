@@ -1,4 +1,4 @@
-package com.estatedy;
+package com.dzodi;
 
 import org.apache.maven.plugin.MojoExecutionException;
 import org.apache.maven.plugins.annotations.LifecyclePhase;
@@ -9,7 +9,7 @@ import java.io.File;
 import java.util.Arrays;
 import java.util.List;
 
-import static com.estatedy.Command.convertClasspathToShCommand;
+import static com.dzodi.Command.convertClasspathToShCommand;
 
 @Mojo(name = "cloudformation:deploy", defaultPhase = LifecyclePhase.DEPLOY)
 public class CloudformationDeployMojo extends AbstractAwsBuildMojo {
