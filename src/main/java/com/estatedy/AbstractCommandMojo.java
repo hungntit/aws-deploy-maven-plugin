@@ -1,4 +1,4 @@
-package maven.aws;
+package com.estatedy;
 
 import org.apache.commons.exec.*;
 import org.apache.maven.plugin.MojoExecutionException;

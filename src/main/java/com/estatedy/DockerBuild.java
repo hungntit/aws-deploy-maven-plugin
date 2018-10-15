@@ -1,4 +1,4 @@
-package maven.aws;
+package com.estatedy;
 
 import org.apache.maven.plugins.annotations.Mojo;
 
