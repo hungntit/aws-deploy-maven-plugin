@@ -30,6 +30,12 @@ public class CloudformationDeployMojo extends AbstractAwsBuildMojo {
     )
     protected String environment;
 
+    @Parameter(
+            property = "aws.stack.prefix.by.env",
+            defaultValue = "true"
+    )
+    protected boolean prefixByEnvironment;
+
     public List<Command> getCommands() throws MojoExecutionException {
         getTargetDir().mkdir();
         System.out.println("target dir:"+ getTargetDir().exists());
@@ -39,7 +45,7 @@ public class CloudformationDeployMojo extends AbstractAwsBuildMojo {
         handleTemplate();
         File environmentFile = getEnvironmentFile();
         Command cloudformationCmd = convertClasspathToShCommand(new Command(getWorkingDirectory(),
-                "classpath:cloudformation.sh", region, stackName,
+                "classpath:cloudformation.sh", region, stackName, String.valueOf(prefixByEnvironment),
                 getTemplateFile().getAbsolutePath(),
                 environmentFile == null ? "" : environmentFile.getAbsolutePath()), Command.ClasspathCommandType.bash);
         return Arrays.asList(cloudformationCmd);
