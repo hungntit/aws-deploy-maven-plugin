@@ -6,10 +6,11 @@ set -e
 STACK_NAME=${2}
 TEMPLATE_FILE=$3
 PREFIX_BY_ENV=$4
+STACK_ENV=$5
 PREFIX=""
 
-if [ "$5" != "" ]; then
-    PARAMETERS="--parameters file://${5}.json"
+if [ "$6" != "" ]; then
+    PARAMETERS="--parameters file://${6}"
     if [ "${PREFIX_BY_ENV}" == "true" ]; then
        PREFIX="${5}-"
     fi
@@ -28,7 +29,7 @@ function stackExists() {
 
 UPDATE_LOG=/tmp/cf-update-${STACK_NAME}.log
 
-if ! stackExists ${STACK_NAME}; then
+if ! stackExists ${PREFIX}${STACK_NAME}; then
     aws cloudformation create-stack --capabilities CAPABILITY_NAMED_IAM --stack-name ${PREFIX}${STACK_NAME} --template-body file://${TEMPLATE_FILE} ${PARAMETERS}
     aws cloudformation wait stack-create-complete --stack-name ${PREFIX}${STACK_NAME}
 else

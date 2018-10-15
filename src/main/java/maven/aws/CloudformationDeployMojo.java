@@ -45,8 +45,9 @@ public class CloudformationDeployMojo extends AbstractAwsBuildMojo {
         handleTemplate();
         File environmentFile = getEnvironmentFile();
         Command cloudformationCmd = convertClasspathToShCommand(new Command(getWorkingDirectory(),
-                "classpath:cloudformation.sh", region, stackName, String.valueOf(prefixByEnvironment),
-                getTemplateFile().getAbsolutePath(),
+                "classpath:cloudformation.sh", region, stackName,
+                getTemplateFile().getAbsolutePath(), String.valueOf(prefixByEnvironment),
+                environment,
                 environmentFile == null ? "" : environmentFile.getAbsolutePath()), Command.ClasspathCommandType.bash);
         return Arrays.asList(cloudformationCmd);
     }
@@ -64,7 +65,7 @@ public class CloudformationDeployMojo extends AbstractAwsBuildMojo {
 
     public File getEnvironmentFile() {
         if (environment != null && !"".equals(environment)) {
-            return new File(new File(getCloudFormationDir(), "environments"), environment);
+            return new File(new File(getCloudFormationDir(), "environments"), environment + ".json");
         } else {
             return null;
         }
@@ -75,7 +76,7 @@ public class CloudformationDeployMojo extends AbstractAwsBuildMojo {
     }
 
     public File getBaseEnvironmentFile() {
-        return new File(new File(getBaseCloudFormationDir(), "environments"), environment);
+        return new File(new File(getBaseCloudFormationDir(), "environments"), environment + ".json");
     }
 
     private File getBaseCloudFormationDir() {
