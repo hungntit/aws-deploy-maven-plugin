@@ -42,7 +42,18 @@
             </url>
         </repository>
     </distributionManagement>
+    <description>
+        This Maven plugin lets you deploy your Docker image to AWS ECR by existed Dockerfile in baseDir and deploy cloudformation project.
+        With AWS Cloudformation and AWS ECR support, you can deploy your java application to AWS. Easy!
+    </description>
 
+    <licenses>
+        <license>
+            <name>The Apache Software License, Version 2.0</name>
+            <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+            <distribution>repo</distribution>
+        </license>
+    </licenses>
     <scm>
         <connection>scm:git:git://github.com/hungntit/aws-deploy-maven-plugin.git</connection>
         <developerConnection>scm:git:git@github.com:hungntit/hungntit.git</developerConnection>
