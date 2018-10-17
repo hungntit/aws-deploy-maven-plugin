@@ -40,7 +40,7 @@ public abstract class AbstractCommandMojo extends ExecMojo {
     private File cloneFileTargetedDir;
 
     @Parameter
-    private Map<String, String> environmentVariables = new HashMap();
+    private Map<String, String> environmentVariables = new HashMap<>();
 
     @Parameter
     private File environmentScript = null;
@@ -134,7 +134,7 @@ public abstract class AbstractCommandMojo extends ExecMojo {
     }
 
     protected void executeCommand(Command command) throws MojoExecutionException {
-        executeCommand(command, new HashMap<>());
+        executeCommand(command, new HashMap<String, String>());
     }
 
     protected void executeCommand(Command command, Map<String, String> environments) throws MojoExecutionException {

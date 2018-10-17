@@ -8,6 +8,7 @@ import org.apache.maven.plugins.annotations.Parameter;
 import java.io.File;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Properties;
 
 import static com.dzodi.Command.convertClasspathToShCommand;
 
@@ -38,7 +39,7 @@ public class CloudformationDeployMojo extends AbstractAwsBuildMojo {
 
     public List<Command> getCommands() throws MojoExecutionException {
         getTargetDir().mkdir();
-        System.out.println("target dir:"+ getTargetDir().exists());
+        System.out.println("target dir:" + getTargetDir().exists());
         executeCommand(new Command(this.getWorkingDirectory(),
                 "cp", "-rp", getBaseCloudFormationDir().getAbsolutePath(), getTargetDir().getAbsolutePath() + "/"));
         handleBuildNumber();
@@ -46,8 +47,7 @@ public class CloudformationDeployMojo extends AbstractAwsBuildMojo {
         File environmentFile = getEnvironmentFile();
         Command cloudformationCmd = convertClasspathToShCommand(new Command(getWorkingDirectory(),
                 "classpath:cloudformation.sh", region, stackName,
-                getTemplateFile().getAbsolutePath(), String.valueOf(prefixByEnvironment),
-                environment,
+                getTemplateFile().getAbsolutePath(), getStackPrefix(),
                 environmentFile == null ? "" : environmentFile.getAbsolutePath()), Command.ClasspathCommandType.bash);
         return Arrays.asList(cloudformationCmd);
     }
@@ -102,5 +102,18 @@ public class CloudformationDeployMojo extends AbstractAwsBuildMojo {
                 throw new MojoExecutionException(getBaseEnvironmentFile().getAbsolutePath() + " does exists on " + getBasedir());
             }
         }
+    }
+
+    private String getStackPrefix() {
+        if (environment != null && !"".equals(environment) && prefixByEnvironment) {
+           return environment + "-";
+        }
+        return "";
+    }
+    @Override
+    public Properties getFullProperties() {
+        Properties properties = super.getFullProperties();
+        properties.put("aws.stack.prefix", getStackPrefix());
+        return properties;
     }
 }

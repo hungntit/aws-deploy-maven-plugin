@@ -11,7 +11,7 @@ import java.util.List;
 
 import static com.dzodi.Command.convertClasspathToShCommand;
 
-@Mojo(name = "deploy", defaultPhase = LifecyclePhase.DEPLOY)
+@Mojo(name = "ecr:deploy", defaultPhase = LifecyclePhase.DEPLOY)
 public class EcrFullFlowMojo extends AbstractAwsBuildMojo {
 
     @Parameter(
@@ -29,10 +29,14 @@ public class EcrFullFlowMojo extends AbstractAwsBuildMojo {
 
         Command ecrLogin = convertClasspathToShCommand(new Command(getWorkingDirectory(),
                 "classpath:ecr_login.sh", ecrAccountId, region, groupId + "-" + artifactId, version + "-" + buildNumber, profile));
-        return Arrays.asList(
-                new Command(this.getWorkingDirectory(),
-                        "cp", "-rp", getDockerFile().getAbsolutePath(), getWorkingDirectory().getAbsolutePath() + "/"),
-                ecrLogin);
+        if (!getDockerFile().getAbsolutePath().equals(getWorkingDirectory().getAbsolutePath())) {
+            return Arrays.asList(
+                    new Command(this.getWorkingDirectory(),
+                            "cp", "-rp", getDockerFile().getAbsolutePath(), getWorkingDirectory().getAbsolutePath() + "/"),
+                    ecrLogin);
+        } else {
+            return Arrays.asList(ecrLogin);
+        }
     }
 
     private File getDockerFile() {

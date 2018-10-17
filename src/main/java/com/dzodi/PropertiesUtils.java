@@ -18,7 +18,7 @@ public class PropertiesUtils {
             return null;
         }
 
-        Pattern p = Pattern.compile("\\@\\{([a-zA-Z0-9\\.]+)\\}|\\@([a-zA-Z0-9\\.]+)");
+        Pattern p = Pattern.compile("\\@\\{([a-zA-Z0-9\\.]+)\\}");
         Matcher m = p.matcher(value);
         StringBuffer sb = new StringBuffer();
         while (m.find()) {

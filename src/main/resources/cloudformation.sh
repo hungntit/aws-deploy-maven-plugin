@@ -5,15 +5,10 @@ set -e
 
 STACK_NAME=${2}
 TEMPLATE_FILE=$3
-PREFIX_BY_ENV=$4
-STACK_ENV=$5
-PREFIX=""
+PREFIX=$4
 
-if [ "$6" != "" ]; then
-    PARAMETERS="--parameters file://${6}"
-    if [ "${PREFIX_BY_ENV}" == "true" ]; then
-       PREFIX="${5}-"
-    fi
+if [ "$5" != "" ]; then
+    PARAMETERS="--parameters file://${5}"
 else
     PARAMETERS=""
 fi
