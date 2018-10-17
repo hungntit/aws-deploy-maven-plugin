@@ -5,7 +5,7 @@
     <name>aws-deploy-maven-plugin Maven Mojo</name>
     <url>http://maven.apache.org</url>
     <packaging>maven-plugin</packaging>
-    <version>1.0.3</version>
+    <version>1.0.4-SNAPSHOT</version>
     <developers>
         <developer>
             <email>hungnt.it@gmail.com</email>
@@ -58,7 +58,7 @@
         <connection>scm:git:git://github.com/hungntit/aws-deploy-maven-plugin.git</connection>
         <developerConnection>scm:git:git@github.com:hungntit/hungntit.git</developerConnection>
         <url>https://github.com/hungntit/aws-deploy-maven-plugin</url>
-        <tag>aws-deploy-maven-plugin-1.0.3</tag>
+        <tag>HEAD</tag>
     </scm>
 
     <build>
