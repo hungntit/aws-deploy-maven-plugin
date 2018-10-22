@@ -2,8 +2,9 @@
 
 ## Deploy Cloudformation stack:
 - Add the folder /cloudformation to your source code
-- Put the template.yml file to this , put the directory environments for parameters
-Add below config to your pom
+- Put the template.yml file to /cloudformation folder, we can the template file by changing the aws.stack.template.name property  
+- Put the directory /cloudformation/environments/dev.json for cloudformation parameters file if you want.
+- Add below config to your pom
 
             <build>
                 <plugins>
@@ -23,6 +24,5 @@ Add below config to your pom
                     </plugin>
                 </plugins>
             </build>
-       
     
-## Deploy 
+## Deploy Docker Image to ECS
