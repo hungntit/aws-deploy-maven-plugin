@@ -57,3 +57,22 @@ In this case, The `Dockerfile` will be clone to `${baseDir}/target/` directory, 
                         </executions>
                    </plugin>
 
+## Deploy Docker Image to ECS then create ECS Service
+
+                   <plugin>
+                        <groupId>com.dzodi</groupId>
+                        <artifactId>aws-deploy-maven-plugin</artifactId>
+                        <version>1.0.3</version>
+                        <executions>
+                            <execution>
+                                <id>deploy</id>
+                                <phase>install</phase>
+                                <goals>
+                                    <goal>ecr:deploy</goal>
+                                    <goal>cloudformation:deploy</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                   </plugin>
+
+To more detail, please view on examples
