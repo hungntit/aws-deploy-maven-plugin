@@ -33,7 +33,7 @@ public class CloudformationDeployMojo extends AbstractAwsBuildMojo {
 
     @Parameter(
             property = "aws.stack.prefix.by.env",
-            defaultValue = "true"
+            defaultValue = "false"
     )
     protected boolean prefixByEnvironment;
 
