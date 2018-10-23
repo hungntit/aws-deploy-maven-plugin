@@ -11,7 +11,7 @@
                     <plugin>
                         <groupId>com.dzodi</groupId>
                         <artifactId>aws-deploy-maven-plugin</artifactId>
-                        <version>1.0.3</version>
+                        <version>1.0.5</version>
                         <executions>
                             <execution>
                                 <id>deploy</id>
