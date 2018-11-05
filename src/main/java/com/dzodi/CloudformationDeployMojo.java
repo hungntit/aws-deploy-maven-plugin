@@ -12,11 +12,11 @@ import java.util.Properties;
 
 import static com.dzodi.Command.convertClasspathToShCommand;
 
-@Mojo(name = "cloudformation-deploy", defaultPhase = LifecyclePhase.DEPLOY)
+@Mojo(name = "cloudformation-deploy", defaultPhase = LifecyclePhase.PACKAGE)
 public class CloudformationDeployMojo extends AbstractAwsBuildMojo {
     @Parameter(
             property = "aws.stack.name",
-            defaultValue = "${project.name}"
+            defaultValue = "${project.artifactId}"
     )
     protected String stackName;
 
