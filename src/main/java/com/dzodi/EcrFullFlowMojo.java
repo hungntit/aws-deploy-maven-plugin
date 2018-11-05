@@ -11,7 +11,7 @@ import java.util.List;
 
 import static com.dzodi.Command.convertClasspathToShCommand;
 
-@Mojo(name = "ecr:deploy", defaultPhase = LifecyclePhase.DEPLOY)
+@Mojo(name = "ecr-deploy", defaultPhase = LifecyclePhase.DEPLOY)
 public class EcrFullFlowMojo extends AbstractAwsBuildMojo {
 
     @Parameter(
