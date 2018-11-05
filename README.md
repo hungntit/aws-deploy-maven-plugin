@@ -11,7 +11,7 @@
                     <plugin>
                         <groupId>com.dzodi</groupId>
                         <artifactId>aws-deploy-maven-plugin</artifactId>
-                        <version>1.0.3</version>
+                        <version>1.0.5</version>
                         <executions>
                             <execution>
                                 <id>deploy</id>
@@ -26,7 +26,7 @@
             </build>
  - The stack will be created with ${project.name} name, you can change this name by add the `aws.stack.name` property
  - To deploy, we just run `mvn clean install -Daws.region=us-east-1 -Daws.ecr.account.id=$(aws sts get-caller-identity --output text --query 'Account') `
- - To deploy with parameter, using `-Daws.stack.env` property in your maven command. In this case, the stack will be created with name `${aws.stack.env}-${project.name}`, to ignore the `${aws.stack.env}-` prefix, set the property `-Daws.stack.prefix.by.env=false`
+ - To deploy with parameter, using `-Daws.stack.env` property in your maven command. If your want to prefix your stack by `${aws.stack.env}` (in this case, the stack will be created with name `${aws.stack.env}-${project.name}`) ,set the property `-Daws.stack.prefix.by.env=true`
  
 ## Deploy Docker Image to ECS
 - Add the `Dockerfile` to your `${baseDir}`
@@ -45,7 +45,7 @@ In this case, The `Dockerfile` will be clone to `${baseDir}/target/` directory, 
                    <plugin>
                         <groupId>com.dzodi</groupId>
                         <artifactId>aws-deploy-maven-plugin</artifactId>
-                        <version>1.0.3</version>
+                        <version>1.0.5</version>
                         <executions>
                             <execution>
                                 <id>deploy</id>
@@ -62,7 +62,7 @@ In this case, The `Dockerfile` will be clone to `${baseDir}/target/` directory, 
                    <plugin>
                         <groupId>com.dzodi</groupId>
                         <artifactId>aws-deploy-maven-plugin</artifactId>
-                        <version>1.0.3</version>
+                        <version>1.0.5</version>
                         <executions>
                             <execution>
                                 <id>deploy</id>
