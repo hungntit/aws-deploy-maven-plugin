@@ -47,8 +47,8 @@ public class CloudformationDeployMojo extends AbstractAwsBuildMojo {
         File environmentFile = getEnvironmentFile();
         Command cloudformationCmd = convertClasspathToShCommand(new Command(getWorkingDirectory(),
                 "classpath:cloudformation.sh", region, stackName,
-                getTemplateFile().getAbsolutePath(), getStackPrefix(),
-                environmentFile == null ? "" : environmentFile.getAbsolutePath()), Command.ClasspathCommandType.bash);
+                getTemplateFile().getAbsolutePath(),
+                environmentFile == null ? "" : environmentFile.getAbsolutePath(), getStackPrefix()), Command.ClasspathCommandType.bash);
         return Arrays.asList(cloudformationCmd);
     }
 

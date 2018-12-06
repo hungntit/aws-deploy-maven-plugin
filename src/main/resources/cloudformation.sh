@@ -5,13 +5,14 @@ set -e
 
 STACK_NAME=${2}
 TEMPLATE_FILE=$3
-PREFIX=$4
 
-if [ "$5" != "" ]; then
-    PARAMETERS="--parameters file://${5}"
+if [ "$4" != "" ]; then
+    PARAMETERS="--parameters file://${4}"
 else
     PARAMETERS=""
 fi
+
+PREFIX=$5
 
 function stackExists() {
     stackName=${1}
