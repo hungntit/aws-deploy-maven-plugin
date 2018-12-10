@@ -12,7 +12,7 @@ fi
 
 REGISTRY_ID=${ECR_ACCOUNT_ID}.dkr.ecr.${REGION}.amazonaws.com
 DOCKER_REPO=${REGISTRY_ID}/${PROJECT_NAME}
-
+set -e
 if [ "${REGION}" != "" ] ; then
      $(aws ecr get-login --region ${REGION} --no-include-email)
 else

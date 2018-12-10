@@ -14,12 +14,20 @@ fi
 
 PREFIX=$5
 
+STACK_LOG=/tmp/stack-status.log
 function stackExists() {
-    stackName=${1}
+    local stackName=${1}
     set +e
-    aws cloudformation describe-stacks --stack-name ${stackName}
+    aws cloudformation describe-stacks --stack-name ${stackName} > ${STACK_LOG} 2>&1
     found=(${?} eq '0')
+    local status=`cat ${STACK_LOG} | grep StackStatus | cut -d '"' -f4`
+    if [ "${status}" == "ROLLBACK_COMPLETE" ];then
+        echo "Stack is in ROLLBACK_COMPLETE, deleting ..."
+        aws cloudformation  delete-stack --stack-name ${stackName}
+        found=1
+    fi
     set -e
+
     return ${found};
 }
 
@@ -35,7 +43,7 @@ else
     set -e
     if [ "${updateCode}" -eq "255" ] ; then
         cat ${UPDATE_LOG}
-        rm -f ${UPDATE_LOG}
+        grep "No updates are to be performed" ${UPDATE_LOG}
     else
         UPDATE_LOG=/tmp/update.cfm.log
         aws cloudformation wait stack-update-complete --stack-name ${PREFIX}${STACK_NAME}
