@@ -11,7 +11,7 @@
                     <plugin>
                         <groupId>com.dzodi</groupId>
                         <artifactId>aws-deploy-maven-plugin</artifactId>
-                        <version>1.0.5</version>
+                        <version>1.0.8</version>
                         <executions>
                             <execution>
                                 <id>deploy</id>
@@ -45,7 +45,7 @@ In this case, The `Dockerfile` will be clone to `${baseDir}/target/` directory, 
                    <plugin>
                         <groupId>com.dzodi</groupId>
                         <artifactId>aws-deploy-maven-plugin</artifactId>
-                        <version>1.0.5</version>
+                        <version>1.0.8</version>
                         <executions>
                             <execution>
                                 <id>deploy</id>
@@ -62,7 +62,7 @@ In this case, The `Dockerfile` will be clone to `${baseDir}/target/` directory, 
                    <plugin>
                         <groupId>com.dzodi</groupId>
                         <artifactId>aws-deploy-maven-plugin</artifactId>
-                        <version>1.0.5</version>
+                        <version>1.0.8</version>
                         <executions>
                             <execution>
                                 <id>deploy</id>
