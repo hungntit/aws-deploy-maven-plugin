@@ -54,7 +54,7 @@ Resources:
     Type: AWS::EC2::SecurityGroup
     Properties:
       GroupDescription: Access to the Fargate containers
-      VpcId: !ImportValue "@{aws.stack.prefix}cloudformation-vpc-VPCId1"
+      VpcId: !ImportValue "@{aws.stack.prefix}cloudformation-vpc-VPCId"
   EcsSecurityGroupIngressFromPublicALB:
     Type: AWS::EC2::SecurityGroupIngress
     Properties:
