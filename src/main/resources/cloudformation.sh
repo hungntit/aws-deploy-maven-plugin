@@ -24,6 +24,7 @@ function stackExists() {
     if [ "${status}" == "ROLLBACK_COMPLETE" ];then
         echo "Stack is in ROLLBACK_COMPLETE, deleting ..."
         aws cloudformation  delete-stack --stack-name ${stackName}
+        aws cloudformation wait stack-delete-complete --stack-name
         found=1
     fi
     set -e
