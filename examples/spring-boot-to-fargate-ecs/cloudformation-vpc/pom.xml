@@ -6,6 +6,7 @@
         <artifactId>aws-plugin</artifactId>
         <groupId>aws-maven-plugin</groupId>
         <version>1.0-SNAPSHOT</version>
+        <relativePath/>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
@@ -22,13 +23,13 @@
                     <plugin>
                         <groupId>com.dzodi</groupId>
                         <artifactId>aws-deploy-maven-plugin</artifactId>
-                        <version>1.0.5</version>
+                        <version>1.0.9</version>
                         <executions>
                             <execution>
                                 <id>deploy</id>
                                 <phase>install</phase>
                                 <goals>
-                                    <goal>cloudformation:deploy</goal>
+                                    <goal>cloudformation-deploy</goal>
                                 </goals>
                             </execution>
                         </executions>
