@@ -17,7 +17,7 @@
                                 <id>deploy</id>
                                 <phase>install</phase>
                                 <goals>
-                                    <goal>cloudformation:deploy</goal>
+                                    <goal>cloudformation-deploy</goal>
                                 </goals>
                             </execution>
                         </executions>
@@ -51,7 +51,7 @@ In this case, The `Dockerfile` will be clone to `${baseDir}/target/` directory, 
                                 <id>deploy</id>
                                 <phase>install</phase>
                                 <goals>
-                                    <goal>ecr:deploy</goal>
+                                    <goal>ecr-deploy</goal>
                                 </goals>
                             </execution>
                         </executions>
@@ -68,8 +68,8 @@ In this case, The `Dockerfile` will be clone to `${baseDir}/target/` directory, 
                                 <id>deploy</id>
                                 <phase>install</phase>
                                 <goals>
-                                    <goal>ecr:deploy</goal>
-                                    <goal>cloudformation:deploy</goal>
+                                    <goal>ecr-deploy</goal>
+                                    <goal>cloudformation-deploy</goal>
                                 </goals>
                             </execution>
                         </executions>
