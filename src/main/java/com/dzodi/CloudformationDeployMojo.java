@@ -37,6 +37,23 @@ public class CloudformationDeployMojo extends AbstractAwsBuildMojo {
     )
     protected boolean prefixByEnvironment;
 
+    @Parameter(
+            property = "aws.stack.tagsFile"
+    )
+    protected String tagsFile;
+
+    @Parameter(
+            property = "aws.stack.customParam",
+            defaultValue = ""
+    )
+    protected String customParam;
+
+    @Parameter(
+            property = "aws.stack.capabilities",
+            defaultValue = "CAPABILITY_NAMED_IAM"
+    )
+    protected String capabilities;
+
     public List<Command> getCommands() throws MojoExecutionException {
         getTargetDir().mkdir();
         System.out.println("target dir:" + getTargetDir().exists());
@@ -44,11 +61,17 @@ public class CloudformationDeployMojo extends AbstractAwsBuildMojo {
                 "cp", "-rp", getBaseCloudFormationDir().getAbsolutePath(), getTargetDir().getAbsolutePath() + "/"));
         handleBuildNumber();
         handleTemplate();
-        File environmentFile = getEnvironmentFile();
+        final File environmentFile = getEnvironmentFile();
+        final File tagFile = getTagsFile();
         Command cloudformationCmd = convertClasspathToShCommand(new Command(getWorkingDirectory(),
                 "classpath:cloudformation.sh", region, stackName,
+                capabilities,
                 getTemplateFile().getAbsolutePath(),
-                environmentFile == null ? "" : environmentFile.getAbsolutePath(), getStackPrefix()), Command.ClasspathCommandType.bash);
+                environmentFile == null ? "" : environmentFile.getAbsolutePath(),
+                getStackPrefix(),
+                tagsFile == null ? "" : tagFile.getAbsolutePath(),
+                customParam
+                ), Command.ClasspathCommandType.bash);
         return Arrays.asList(cloudformationCmd);
     }
 
@@ -66,6 +89,14 @@ public class CloudformationDeployMojo extends AbstractAwsBuildMojo {
     public File getEnvironmentFile() {
         if (environment != null && !"".equals(environment)) {
             return new File(new File(getCloudFormationDir(), "environments"), environment + ".json");
+        } else {
+            return null;
+        }
+    }
+
+    public File getTagsFile() {
+        if (tagsFile != null && !"".equals(tagsFile)) {
+            return new File(getCloudFormationDir(), tagsFile);
         } else {
             return null;
         }

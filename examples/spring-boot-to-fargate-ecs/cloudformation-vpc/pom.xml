@@ -17,13 +17,14 @@
             <id>deploy</id>
             <properties>
                 <aws.region>us-east-1</aws.region>
+                <aws.stack.tagsFile>awstags.json</aws.stack.tagsFile>
             </properties>
             <build>
                 <plugins>
                     <plugin>
                         <groupId>com.dzodi</groupId>
                         <artifactId>aws-deploy-maven-plugin</artifactId>
-                        <version>1.0.11</version>
+                        <version>1.0.12-SNAPSHOT</version>
                         <executions>
                             <execution>
                                 <id>deploy</id>
