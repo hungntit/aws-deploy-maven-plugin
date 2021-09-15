@@ -50,7 +50,7 @@
                     <plugin>
                         <groupId>com.dzodi</groupId>
                         <artifactId>aws-deploy-maven-plugin</artifactId>
-                        <version>1.0.12-SNAPSHOT</version>
+                        <version>1.0.14</version>
                         <executions>
                             <execution>
                                 <id>deploy</id>
